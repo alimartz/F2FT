@@ -3,16 +3,14 @@ import matplotlib.pyplot as plt
 import scipy
 from fuels import *
 
-class material():
+class Properties():
     def __init__(self, dict):
         self.rel_den: float = dict['rel_den']
         self.fif_den: float = dict['fif_den']
         self.fuel: str = dict['fuel']
 
 
-all_mats = [material(JetA), material(HEFA)]
-
-
+all_mats = [Properties(JetA), Properties(HEFA)]
 
 w_iters = [[0.01, 0.99], [0.2, 0.8], [0.5, 0.5], [0.7, 0.3]]
 tcomp = [1, 0.9, 0.8, 0.7, 0.5, 0]
