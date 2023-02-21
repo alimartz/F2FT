@@ -5,8 +5,11 @@ from fuels import *
 
 class Properties():
     def __init__(self, dict):
-        self.rel_den: float = dict['rel_den']
         self.fif_den: float = dict['fif_den']
+        self.bp: float = dict['bp']
+        self.fp: float = dict['fp']
+        self.k_vis: float = dict['k_vis']
+        self.melt: float = dict['melt']
         self.fuel: str = dict['fuel']
 
 
@@ -14,8 +17,8 @@ all_mats = [Properties(JetA), Properties(HEFA)]
 
 w_iters = [[0.01, 0.99], [0.2, 0.8], [0.5, 0.5], [0.7, 0.3]]
 tcomp = [1, 0.9, 0.8, 0.7, 0.5, 0]
-prop1 = 'rel_den'
-prop2 = 'fif_den'
+prop1 = 'bp'
+prop2 = 'fp'
 res1 = np.zeros(len(tcomp))
 color = ['blue', 'red']
 res1c = list()
