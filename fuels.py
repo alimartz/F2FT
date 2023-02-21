@@ -21,7 +21,7 @@ JP8_1= {
 
 # Jet-A
 JetA = {
-    "rel_den": 0.811,
+    #"rel_den": 0.811,
     "fif_den": 0.8108,
     "bp": 558.15,
     "fp": 318.15,
@@ -32,7 +32,7 @@ JetA = {
 
 # HEFA
 HEFA= {
-    "rel_den": 0.7615,
+    #"rel_den": 0.7615,
     "fif_den": 0.7612,
     "bp": 542.45,
     "fp": 314.15,
