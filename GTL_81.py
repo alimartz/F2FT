@@ -1,7 +1,7 @@
 import numpy as np
 import matplotlib.pyplot as plt
 import scipy
-from fuels import *
+from fuels import * #import everything in fuels.py
 
 class Properties():
     def __init__(self, dict):
@@ -12,15 +12,23 @@ class Properties():
         self.melt: float = dict['melt']
         self.fuel: str = dict['fuel']
 
-
+# input fuel components here
 all_mats = [Properties(JetA), Properties(HEFA)]
+
+prop_labels = {
+    "fif_den": 'Density - 15C ($kg/m^3$)',
+    "bp": 'Boiling Point (K)',
+    "fp": 'Flash Point (K)',
+    "k_vis": 'Kinematic Viscosity ($mm^2/s$)',
+    "melt": 'Melting Point (K)'
+}
 
 w_iters = [[0.01, 0.99], [0.2, 0.8], [0.5, 0.5], [0.7, 0.3]]
 tcomp = [1, 0.9, 0.8, 0.7, 0.5, 0]
 prop1 = 'bp'
 prop2 = 'fp'
 res1 = np.zeros(len(tcomp))
-color = ['blue', 'red']
+#color = ['blue', 'red']
 res1c = list()
 res2c = list()
 f1c = list()
@@ -73,10 +81,10 @@ ax2.plot(f1c[2], f2c[2], 'd', color='green')
 ax1.plot(res1c[3], res2c[3], 'o', color='yellow', markeredgecolor='black')
 ax2.plot(f1c[3], f2c[3], 'd', color='yellow', markeredgecolor='black')
 ax2.legend(w_iters)
-ax1.set_xlabel('Jet A Volume Fraction')
-ax1.set_ylabel('HEFA Volume Fraction')
-ax2.set_xlabel('Boiling Point Error')
-ax2.set_ylabel('Density (15C) Error')
+ax1.set_xlabel( str(all_mats[0].fuel)+' Volume Fraction')
+ax1.set_ylabel(str(all_mats[1].fuel)+' Volume Fraction')
+ax2.set_xlabel(str(prop_labels[prop1])+' Error')
+ax2.set_ylabel(str(prop_labels[prop2])+' Error')
 ax1.set_title('Decision Space')
 ax2.set_title('Objective Space')
 #plt.savefig('HEFA_JetA_bpfifden.png', dpi=600)
