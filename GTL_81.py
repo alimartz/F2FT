@@ -1,61 +1,16 @@
 import numpy as np
 import matplotlib.pyplot as plt
 import scipy
-
+from fuels import *
 
 class material():
-    def __init__(self, rel_den, fif_den, compound):
-        self.rel_den: float = rel_den
-        self.fif_den: float = fif_den
-        self.compound: str = compound
+    def __init__(self, dict):
+        self.rel_den: float = dict['rel_den']
+        self.fif_den: float = dict['fif_den']
+        self.fuel: str = dict['fuel']
 
 
-
-
-
-
-
-'''hello'''
-'''# Shell GTL
-s1_dict = {
-    "fif_den": 736, #kg/m3
-    "bp": 195.2+273.15, #K
-    "fp": 43+273.15, #K
-    "k_vis": 2.49, #mm2/s
-    "melt": -53.8+273.15 #K
-}
-
-# JP 8-1
-s2_dict= {
-    "fif_den": 799.9, #kg/m3
-    "bp": 268.1+273.15, #K
-    "fp": 47.1+273.15, #K
-    "k_vis": 4.347, #mm2/s
-    "melt": -50.8+273.15 #K
-}
-'''
-
-# Jet-A
-s1_dict = {
-    "rel_den": 0.811,
-    "fif_den": 0.8108,
-    "bp": 558.15,
-    "fp": 318.15,
-    "k_vis": 4.502,
-    "melt": -42+273.15
-}
-
-# HEFA
-s2_dict= {
-    "rel_den": 0.7615,
-    "fif_den": 0.7612,
-    "bp": 542.45,
-    "fp": 314.15,
-    "k_vis": 5.571,
-    "melt": -47+273.15
-}
-
-all_mats = [material(0.811, 0.8108, 'Jet-A'), material(0.7615, 0.7612, 'HEFA')]
+all_mats = [material(JetA), material(HEFA)]
 
 
 
