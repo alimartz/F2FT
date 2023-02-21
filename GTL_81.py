@@ -2,6 +2,20 @@ import numpy as np
 import matplotlib.pyplot as plt
 import scipy
 
+
+class material():
+    def __init__(self, rel_den, fif_den, compound):
+        self.rel_den: float = rel_den
+        self.fif_den: float = fif_den
+        self.compound: str = compound
+
+
+
+
+
+
+
+'''hello'''
 '''# Shell GTL
 s1_dict = {
     "fif_den": 736, #kg/m3
@@ -41,9 +55,13 @@ s2_dict= {
     "melt": -47+273.15
 }
 
+all_mats = [material(0.811, 0.8108, 'Jet-A'), material(0.7615, 0.7612, 'HEFA')]
+
+
+
 w_iters = [[0.01, 0.99], [0.2, 0.8], [0.5, 0.5], [0.7, 0.3]]
 tcomp = [1, 0.9, 0.8, 0.7, 0.5, 0]
-prop1 = 'bp'
+prop1 = 'rel_den'
 prop2 = 'fif_den'
 res1 = np.zeros(len(tcomp))
 color = ['blue', 'red']
@@ -52,24 +70,24 @@ res2c = list()
 f1c = list()
 f2c = list()
 
-def LBV(v_frac, prop):
-    
-        predict = (s1_dict[prop]*v_frac) + (s2_dict[prop]*(1-v_frac))
+def LBV(v_frac, prop, materials):
+        predict = (materials[0].__dict__[prop]*v_frac) + (materials[1].__dict__[prop]*(1-v_frac))
 
         return predict
 
-def error(v_frac, prop, tcomp):
+def error(v_frac, prop, tcomp, materials):
     
-            err_2 = ((LBV(tcomp, prop)-LBV(v_frac, prop))/(LBV(tcomp, prop)))**2
+            err_2 = ((LBV(tcomp, prop, materials)-LBV(v_frac, prop, materials))/(LBV(tcomp, prop, materials)))**2
 
             return err_2 
+
 
 for idx2 in range(0, len(w_iters)):
 
         for idx in range(0, len(tcomp)):
 
                         def obj(v_frac):
-                                objective = (w_iters[idx2][0]*error(v_frac, prop=prop1, tcomp=tcomp[idx]))+(w_iters[idx2][1]*error(v_frac, prop=prop2, tcomp=tcomp[idx]))
+                                objective = (w_iters[idx2][0]*error(v_frac, prop1, tcomp[idx], all_mats))+(w_iters[idx2][1]*error(v_frac, prop2, tcomp[idx], all_mats))
                                 return objective
 
                         result = scipy.optimize.minimize_scalar(obj)
