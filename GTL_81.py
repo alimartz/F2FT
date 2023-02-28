@@ -26,9 +26,8 @@ prop_labels = {
 w_iters = [[0.01, 0.99], [0.2, 0.8], [0.5, 0.5], [0.7, 0.3]]
 tcomp = [1, 0.9, 0.8, 0.7, 0.5, 0]
 prop1 = 'bp'
-prop2 = 'fp'
+prop2 = 'k_vis'
 res1 = np.zeros(len(tcomp))
-#color = ['blue', 'red']
 res1c = list()
 res2c = list()
 f1c = list()
@@ -88,6 +87,7 @@ ax2.set_ylabel(str(prop_labels[prop2])+' Error')
 ax1.set_title('Decision Space')
 ax2.set_title('Objective Space')
 #plt.savefig('HEFA_JetA_bpfifden.png', dpi=600)
+plt.savefig(str(all_mats[0].fuel)+'_'+all_mats[1].fuel+'_'+prop1+'_'+prop2+'.png', dpi=600)
 plt.show()
 
 
